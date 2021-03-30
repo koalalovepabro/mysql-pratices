@@ -25,7 +25,7 @@ order by hire_date desc; -- desc는 내림차순, 아무것도 안쓰면 오름�
 
 -- Like 검색
 select * from employees where first_name like '%pe'; -- 이름이 pe로 끝나는 사람
-select * from employees where first_name like 'p____'; -- 이름이 pe로 시작하는 사람
+select * from employees where first_name like 'p____'; -- 이름이 p로 시작하는 사람
 
 -- 1. salaries 테이블에서 2001년 월급을 가장 높은순으로 사번, 월급 순으로 출력
   select emp_no, salary 
