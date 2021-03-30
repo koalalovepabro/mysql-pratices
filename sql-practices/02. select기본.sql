@@ -29,22 +29,22 @@ select * from employees where first_name like 'p____'; -- 이름이 p로 시작�
 
 -- 1. salaries 테이블에서 2001년 월급을 가장 높은순으로 사번, 월급 순으로 출력
   select emp_no, salary 
-    from salaries 
+    from salaries
    where from_date like '2001-%'
-order by salary desc; 
+order by salary desc;  -- 월급 내림차순 정렬(높은순)
 
 -- 2. salaries 테이블에서 2001년 월급을 가장 높은순으로 사번, 월급순으로 출력
   select emp_no, salary
     from salaries
-   where from_date > '2001-12-31'
+   where from_date > '2000-12-31'
      and from_date < '2002-01-01'
-order by salary desc;
+order by salary desc;  -- 월급 내림차순 정렬(높은순)
 
 -- 3. employees 테이블에서 1991년 이전에 입사한 직원의 이름, 성별, 입사일을 출력
   select first_name, gender, hire_date
     from employees
    where hire_date < '1991-01-01'
-order by hire_date desc;
+order by hire_date desc; -- 입사일 내림차순
 
 -- date_format
 -- 4. employees 테이블에서 1989년 이전에 입사한 여직원의 이름, 입사일을 출력
@@ -55,8 +55,6 @@ order by hire_date desc;
    where hire_date < '1989-01-01'
      and gender = 'F'
 order by hire_date desc;
-
-
 
 
 
