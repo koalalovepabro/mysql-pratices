@@ -14,23 +14,22 @@ desc pets;
 -- insert(C)
  insert
    into pets
- values('성탄이', 'kickscar', 'dog', 'm', '2010-12-25', null);
+ values('메리', 'dorothy', 'dog', 'm', '2010-12-25', null);
  
  insert
    into pets(owner, name, species, gender, birth)
- values('kickscar', 'choco', 'cat', 'm', '2015-01-01');
+ values('dorothy', '금동이', 'cat', 'm', '2015-01-01');
 
  insert
    into pets
- values('마음이', 'kickscar', 'dog', 'm', '2012-12-25', '2021-03-30');
-
+ values('코코', 'dorothy', 'dog', 'f', '2012-12-25', '2021-03-30');
 
 -- select(R)
 select * from pets;
 
 select name, birth from pets;
 
-select name, birth from pets order by birth asc;
+select name, birth from pets order by birth asc; -- 생년월일 오름차순
 
 select count(*) from pets;
 select count(*) from pets where death is not null;
@@ -38,12 +37,12 @@ select count(*) from pets where death is not null;
 -- update(U)
 update pets
 set species='monkey'
-where name='choco';
+where name='금동이';
 
 -- delete(D)
 delete 
   from pets 
-where death is not null;
+where death is not null; -- death값이 있는 행 삭제
 
-
-
+show tables;
+select * from pets;
