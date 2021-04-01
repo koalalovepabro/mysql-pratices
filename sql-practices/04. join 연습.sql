@@ -35,7 +35,7 @@ order by sum(a.salary) desc;
 -- ANSI / ISO SQL 1999 JOIN 문법
 --
 
--- join ~ on
+-- join ~ on  (결과값은 EQUIJOIN과 같지만, join~ on 이 표준문법이다)
 -- 현재 근무하고 있는 여직원의 이름과 직책을 직원 이름 순으로 출력하세요.
   select a.first_name, b.title
     from employees a
@@ -48,7 +48,8 @@ order by a.first_name;
 -- natural join
       select a.first_name, b.title
         from employees a
-natural join titles b                 -- 같은 칼럼을 자동으로 join함. 따로 join condition 필요없긴하지만
+natural join titles b                 -- 같은 칼럼을 자동으로 join함. 
+									  -- 칼럼 이름이 같은 걸 자동으로 걸어주기 때문에, join condition 필요없음
 									  -- join조건으로 걸리면 안되는 항목까지 join되는 것이 단점!!
                                       -- (여기에서는 겹치는 주키가 emp_no밖에 없어서 문제가 되지 않음)
        where b.to_date = '9999-01-01' -- select condition
@@ -56,7 +57,7 @@ natural join titles b                 -- 같은 칼럼을 자동으로 join함. 
     order by a.first_name;			
 
 -- natural join 단점 확인
--- titles와 salaries 조인하기 (주키가 2개 겹침 - emp_no, from_date) 
+-- titles와 salaries 조인하기 (주키가 3개 겹침 - emp_no, from_date, to_date) 
 -- count(*)결과값_" join ~ on 일 때 " : 240124
 select count(*)
   from titles a
@@ -68,7 +69,7 @@ select count(*)
 -- count(*)결과값_" natural join 일 때 " : 4
 select count(*)
   from titles a
-natural join salaries b  -- join condition이 따로 없기때문에, emp_num과 from_date가 같은 사람만 걸러짐
+natural join salaries b  -- join condition이 따로 없기때문에, 겹치는 주키 3개를 다 걸어버림.
  where a.to_date = '9999-01-01'
    and b.to_date = '9999-01-01';
    
@@ -98,6 +99,18 @@ select a.name, b.name
   from emp a
   join dept b
     on a.dept_no = b.no;
+    
+-- left join (join을 사이에두고, 더 나와야 될 쪽을 left에 두는 것)
+   select a.name, ifnull(b.name, '없음')
+     from emp a
+left join dept b
+    on a.dept_no = b.no;
+    
+-- right join (join을 사이에두고, 더 나와야 될 쪽을 right에 두는 것)
+    select ifnull(a.name, "직원없음"), b.name
+      from emp a
+right join dept b
+        on a.dept_no = b.no;
     
     
 
