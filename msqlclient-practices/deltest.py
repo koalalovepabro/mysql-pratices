@@ -14,7 +14,7 @@ try:
     cursor = db.cursor()        # 기본커서
 
     # SQL 실행
-    sql = 'delete from emaillist where email = 'dalengel@gmail.com''
+    sql = "delete from emaillist where email = 'delangel@gmail.com'" # 따옴표가 이중으로 쓰일 경우에는, 다른 종류로 !
     count = cursor.execute(sql)  # sql실행 성공하면 count =  True(1), 실패하면 False(0)이 된다.
 
     # commit
